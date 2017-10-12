@@ -14,6 +14,6 @@ class Point {
   //POST: CI satisfied.
   Point(int x, int y);
   
-}
+};
 
 #endif
