@@ -25,18 +25,14 @@ void readPoints(ifstream & stream, DoublePointList & pList) {
     DoublePointNode newNode(newPair);
     //ASSERT: newNode.data = newPair;
     //        newNode.next = newNode.previous = NULL
-    cout << "NewNode" << newNode << endl;
-    cout << "Entering insertNode Function" << endl;
     pList.insertNode(newNode);
     //ASSERT: newNode was inserted into pList as a
     //DoublePointNode object according to increasing order
     //of x coordinate  with ties settled by 
     //increasing order of y coordinate.
     //No repititions occured.
-    cout << "exiting insertNode Function" << endl;
   }
   stream.close();
-  cout << "finished reading" << endl;
   
 }
 
