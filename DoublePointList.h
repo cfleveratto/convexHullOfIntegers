@@ -78,8 +78,8 @@ class DoublePointList {
   //      numElements = n+1, and the elements in
   //      the list are p, e1, e2, ..., en. firstNode points
   //      to the DoublePointNode object containing p. lastNode
-  //      points to the DoublePointNode object containing p.
-  void addToFront (Point pElement);
+  //      points to the DoublePointNode object containing en.
+  void addToFront (DoublePointNode & pElement);
   
   //PRE: This object is defined and satisfies the CI.
   //      numElements = n, and the elements in
@@ -92,7 +92,7 @@ class DoublePointList {
   //      are e1, e2, ..., en, p. firstNode points to the
   //      DoublePointNode object containing e1. lastNode points to
   //      the DoublePointNode object containing p.
-  void addToBack (Point pElement);
+  void addToBack (DoublePointNode & pElement);
 
   //PRE: This object is defined and satisfies the CI.
   //      numElements = n, and the elements in
@@ -102,7 +102,7 @@ class DoublePointList {
   //      aNum = p is defined such that p <= n.
   //POST: RV = E, which is the p-th DoublePointNode object in
   //      the list of elements.
-  DoublePointNode getNthNode (int aNum);
+  //DoublePointNode getNthNode (int aNum);
 
   //PRE: This object is defined and satisfies the CI.
   //      numElements = n, and the elements in
@@ -115,7 +115,7 @@ class DoublePointList {
   //       the list are now e2, e3..., en. firstNode points
   //       to the DoublePointNode object containing e2. lastNode
   //       points to the DoublePointNode object containing en.
-  void deleteFirstNode ();
+  //void deleteFirstNode ();
 
   //PRE: This object is defined and satisfies the CI.
   //      numElements = n, and the elements in
@@ -129,7 +129,7 @@ class DoublePointList {
   //       points to the DoublePointNode object containing
   //       e1. lastNode points to the DoublePointNode object
   //       containing e(n-1).
-  void deleteLastNode ();
+  //void deleteLastNode ();
 
   //PRE: This object is defined and satisfies the CI.      
   //      numElements = n, and aNum = p is defined such that
@@ -143,7 +143,13 @@ class DoublePointList {
   //      containing e1. lastNode points to the
   //      DoublePointNode object containing en where p != n;
   //      otherwise, lastNode points to e(n-1).
-  void deleteNthNode (int aNum);
+  //void deleteNthNode (int aNum);
+
+  //PRE: pNode is defined and has a satisfied CI. 
+  //POST: pNode was inserted into this object according to
+  //increasing order of x coordinate  with ties settled by
+  //increasing order of y coordinate. 
+  void insertNode(DoublePointNode & pNode);
 
   //=============================================
   //                 OPERATORS
@@ -172,14 +178,14 @@ class DoublePointList {
   //      too and ending at the DoublePointNode object
   //      lastNode points to.
   //      RV = false otherwise.
-  bool operator == (const DoublePointList pList);
+  bool operator == (const DoublePointList & pList);
    
 
   //=============================================
   //                   OUTPUT
   //=============================================
 
-  //Overloaded >> operator for input stream
+  //Overloaded << operator for outnput stream
   //PRE: pList is a defined DoublePointList whose CI is
   //      satisfied.
   //     stream is a defined writeable stream.

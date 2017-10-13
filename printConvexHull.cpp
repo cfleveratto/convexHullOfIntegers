@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include "DoublePointList.h"
+#include "helper.h"
+
 using namespace std;
 
 //PRE: the terminal contains commandline arguments
@@ -28,12 +30,12 @@ int main(int argc, char *argv[]) {
       //ASSERT: integers were read in from inFile and made
       //into Point objects that are stored in pointsList.
 
-      DoublePointList convexHull = getConvexHull(pointsList);
+      //DoublePointList convexHull = getConvexHull(pointsList);
       //ASSERT: convexHull holds the points in clockwise
       //direction that make up the convex hull with no
       //repetiting points.
 
-      outFile << convexHull << endl;
+      //outFile << convexHull << endl;
       //ASSERT: the DoublePointNodes that are contained in
       //convexHull are written to outFile.
 

@@ -1,8 +1,8 @@
 #ifndef INCLUDED_NODES
 #define INCLUDED_NODES
-#include <iostream>
 #include "Point.h"
 
+#include <iostream>
 using namespace std;
 
 class DoublePointNode {
@@ -42,7 +42,7 @@ class DoublePointNode {
   //      object with a satisfied CI.
   //POST: This object is defined and has a satisfied CI.
   //       data = k, next points to P, and previous = NULL.
-  DoublePointNode (Point pElement, DoublePointNode newNode);
+  //DoublePointNode (Point pElement, DoublePointNode newNode);
 
   //PRE: pNode = P, which is a defined DoublePointNode object
   //      whose CI is satisfied.
@@ -58,6 +58,21 @@ class DoublePointNode {
   //POST: The objects that next and previous point to, if
   //any, are deleted from the heap. 
   ~DoublePointNode ();
+
+  //==============================================
+  //                  ACCESSORS
+  //==============================================
+  
+  Point getData() const;
+  DoublePointNode * getNextPointer();
+  DoublePointNode * getPreviousPointer();
+
+  //==============================================
+  //                  SETTERS
+  //==============================================
+
+  void setNextPointer(DoublePointNode * nextNode);
+  void setPrevPointer(DoublePointNode * prevNode);
   
   // =============================================
   //                 OPERATORS
@@ -74,22 +89,22 @@ class DoublePointNode {
   DoublePointNode & operator = (const DoublePointNode & pNode);
 
   
-  // PRE: pNode = P, which is a defined DoublePointNode object
+  //PRE: pNode = P, which is a defined DoublePointNode object
   //      whose CI is satisfied.
-  // POST: RV = true iff data == P.data and previous.data ==
+  //POST: RV = true iff data == P.data and previous.data ==
   //      P.previous.data and nextwhere previous != NULL.
   //      RV = false, otherwise.
-  bool operator == (const DoublePointNode pList);
+  //bool operator == (const DoublePointNode & pNode);
 
   // =============================================
   //                   OUTPUT
   // =============================================
-
-  // Overloaded >> operator for input stream
-  // PRE: pNode contains an integer N and points to a defined
-  //      DoublePointNode object A.
+  
+  //Overloaded << operator for output stream
+  //PRE: pNode contains Point object A that is defined and
+  //       has a satisfied CI. 
   //      stream is a defined writeable stream.
-  // POST: stream contains N and the data of the DoublePointNode
+  //POST: stream contains A and the data of the DoublePointNode
   //       contained at next where next != NULL.
   //       RV is the changed stream.
   friend ostream & operator << (ostream & stream,
