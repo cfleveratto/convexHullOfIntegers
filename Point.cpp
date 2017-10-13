@@ -34,7 +34,8 @@ bool Point::operator < (const Point & pPoint) {
   if (x_coor < pPoint.x_coor) {
     lessThan = true;
   }
-  else if (y_coor < pPoint.y_coor) {
+  if ((x_coor == pPoint.x_coor) &&
+      (y_coor < pPoint.y_coor)) {
     lessThan = true;
   }
   return(lessThan);
@@ -46,8 +47,8 @@ bool Point::operator < (const Point & pPoint) {
 //not equal the data members in pPoint. False, otherwise.
 bool Point::operator != (const Point & pPoint) {
   bool notEqual = true;
-  if ((x_coor != pPoint.x_coor) &&
-      (y_coor != pPoint.y_coor)) {
+  if ((x_coor == pPoint.x_coor) &&
+      (y_coor == pPoint.y_coor)) {
     notEqual = false;
   }
   return(notEqual);

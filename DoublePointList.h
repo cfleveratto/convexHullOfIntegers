@@ -79,7 +79,7 @@ class DoublePointList {
   //      the list are p, e1, e2, ..., en. firstNode points
   //      to the DoublePointNode object containing p. lastNode
   //      points to the DoublePointNode object containing en.
-  void addToFront (DoublePointNode & pElement);
+  void addToFront (DoublePointNode pElement);
   
   //PRE: This object is defined and satisfies the CI.
   //      numElements = n, and the elements in
@@ -92,7 +92,7 @@ class DoublePointList {
   //      are e1, e2, ..., en, p. firstNode points to the
   //      DoublePointNode object containing e1. lastNode points to
   //      the DoublePointNode object containing p.
-  void addToBack (DoublePointNode & pElement);
+  void addToBack (DoublePointNode pElement);
 
   //PRE: This object is defined and satisfies the CI.
   //      numElements = n, and the elements in

@@ -20,55 +20,62 @@ DoublePointList::DoublePointList () {
 //increasing order of y coordinate. 
 void DoublePointList::insertNode(DoublePointNode & pNode) {
   if (firstNode == NULL) {
-    //ASSERT: Linked List is
+    //ASSERT: Linked List is empty.
     addToFront(pNode);
   }
-  // else {
-//     DoublePointNode * currentNode; //this will point to the
-//                                     //current Node being
-// 				    //checked.
-//     DoublePointNode * previousNode; //this will hold a pointer
-// 				    //to the previous Node
-// 				    //checked.
-//     currentNode = firstNode; //sets checkNode to head of
-// 				   //
-//     bool foundPlace = false;
-//     while ((currentNode != NULL) && !foundPlace) {
-//       //ASSERT: the end of the linked list was not reached.
-//       if (currentNode->getData() < pNode.getData()) {
-// 	//ASSERT:pNode is greater than the current Nodes data.
-// 	previousNode = currentNode;
-// 	currentNode = currentNode->getNextPointer();
-//       }
-//       else if (currentNode->getData() != pNode.getData()) {
-// 	foundPlace = true;
-// 	numElements += 1;
-// 	if (currentNode->getPreviousPointer() != NULL) {
-// 	  //ASSERT: it is not the root
-// 	  pNode.setNextPointer(currentNode);
-// 	  pNode.setPrevPointer(currentNode->getPreviousPointer());
-// 	  DoublePointNode * newNode = new DoublePointNode(pNode);
-// 	  previousNode->setNextPointer(newNode);
-// 	}
-// 	else {
-// 	  //ASSERT: It is the root
-// 	  addToFront(pNode);
-// 	  // pNode.setNextPointer(currentNode);
-// 	  // DoublePointNode * newNode = new DoublePointNode(pNode);
-// 	  // currentNode.setPrevPointer(newNode);
-// 	}
-//       }
-//       else {
-// 	cout << "This is a repeated coordinate. "
-// 	     << "Skipping this pair.\n";
-//       }
-//     }
-//     if(!foundPlace) {
-//       addToBack(pNode);
-//     }
+  else {
+    DoublePointNode * currentNode; //this will point to the
+                                    //current Node being
+				    //checked.
+    DoublePointNode * previousNode; //this will hold a pointer
+				    //to the previous Node
+				    //checked.
+    currentNode = firstNode; //sets checkNode to head of
+				   //
+    bool foundPlace = false;
+    while ((currentNode != NULL) && !foundPlace) {
+      //ASSERT: the end of the linked list was not reached.
+      if (currentNode->getData() < pNode.getData()) {
+	//ASSERT:pNode is greater than the current Nodes data.
+	cout << "Entered Less than condition" << endl;
+	cout << "Current Node" << *currentNode;
+	previousNode = currentNode;
+	currentNode = currentNode->getNextPointer();
+      }
+      else if (currentNode->getData() != pNode.getData()) {
+	foundPlace = true;
+	numElements += 1;
+	if (currentNode->getPreviousPointer() != NULL) {
+	  //ASSERT: it is not the root
+	  DoublePointNode * newNode = new DoublePointNode;
+	  *newNode = pNode;
+	  newNode->setNextPointer(currentNode);
+	  newNode->setPrevPointer(currentNode->getPreviousPointer());
+	  currentNode->setPrevPointer(newNode);
+	  previousNode->setNextPointer(newNode);
+	}
+	else {
+	  //ASSERT: It is the root
+	  addToFront(pNode);
+	  // pNode.setNextPointer(currentNode);
+	  // DoublePointNode * newNode = new DoublePointNode(pNode);
+	  // currentNode.setPrevPointer(newNode);
+	}
+      }
+      else {
+	foundPlace = true;
+	cout << "This is a repeated coordinate. "
+	     << "Skipping this pair.\n";
+      }
+    }
+    if(!foundPlace) {
+      cout << "Entered not found place\n";
+      addToBack(pNode);
+      cout << "Exited not found place \n";
+    }
       
-//   }
-//   cout << *this << endl;
+  }
+  cout << *this << endl;
 }
 
 //PRE: pPointList = P, which is a defined DoublePointList
@@ -94,7 +101,10 @@ DoublePointList::DoublePointList (const DoublePointList & pPointList) {
 //POST: The DoublePointNode objects that firstNode and
 //lastNode pointed to were deleted from the heap.
 DoublePointList::~DoublePointList () {
-  delete firstNode;
+  cout << "Entered deconstructor for List\n";
+  if (firstNode != NULL) {
+    delete firstNode;
+  }
 }
 
 //=============================================
@@ -112,15 +122,18 @@ DoublePointList::~DoublePointList () {
 //      the list are p, e1, e2, ..., en. firstNode points
 //      to the DoublePointNode object containing p. lastNode
 //      points to the DoublePointNode object containing en.
-void DoublePointList::addToFront (DoublePointNode & pElement) {
-  if (firstNode = NULL) {
+void DoublePointList::addToFront (DoublePointNode pElement) {
+  if (firstNode != NULL) {
+    DoublePointNode * newNode = new DoublePointNode;
     pElement.setNextPointer(firstNode);
-    DoublePointNode * newNode = new DoublePointNode(pElement);
+    *newNode = pElement;
     firstNode->setPrevPointer(newNode);
   }
   else {
-    DoublePointNode * newNode = new DoublePointNode(pElement);
+    DoublePointNode * newNode = new DoublePointNode;
+    *newNode = pElement;
     firstNode = newNode;
+    lastNode = newNode;
   }
   numElements += 1;
 }
@@ -136,10 +149,11 @@ void DoublePointList::addToFront (DoublePointNode & pElement) {
 //      are e1, e2, ..., en, p. firstNode points to the
 //      DoublePointNode object containing e1. lastNode points to
 //      the DoublePointNode object containing p.
-void DoublePointList::addToBack (DoublePointNode & pElement) {
-  pElement.setPrevPointer(lastNode);
-  DoublePointNode * newNode = new DoublePointNode(pElement);
+void DoublePointList::addToBack (DoublePointNode pElement) {
+  DoublePointNode * newNode = new DoublePointNode;
+  *newNode = pElement;
   lastNode->setNextPointer(newNode);
+  newNode->setPrevPointer(lastNode);
   lastNode = newNode;
   numElements += 1;
 }
@@ -166,5 +180,8 @@ ostream & operator << (ostream & stream,
     currentNode = currentNode->getNextPointer();
     nodeNum++;
   }
+  stream << endl;
+  stream << "FirstNode memoery location" <<pList.firstNode << endl;
+  stream << "lastNode memory location " << pList.lastNode << endl;
   return (stream);
 }

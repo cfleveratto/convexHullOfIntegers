@@ -31,7 +31,9 @@ class DoublePointNode {
   //=============================================
   //             CONSTRUCTORS/DESTRUCTOR
   //=============================================
-  
+
+  DoublePointNode ();
+    
   //PRE: pElement = k, which is defined Point bject
   //POST: This object is defined and has a satisfied CI.
   //       data = k, next = NULL, previous = NULL.
