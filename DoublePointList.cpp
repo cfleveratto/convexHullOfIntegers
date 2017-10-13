@@ -37,8 +37,6 @@ void DoublePointList::insertNode(DoublePointNode & pNode) {
       //ASSERT: the end of the linked list was not reached.
       if (currentNode->getData() < pNode.getData()) {
 	//ASSERT:pNode is greater than the current Nodes data.
-	cout << "Entered Less than condition" << endl;
-	cout << "Current Node" << *currentNode;
 	previousNode = currentNode;
 	currentNode = currentNode->getNextPointer();
       }
@@ -69,9 +67,7 @@ void DoublePointList::insertNode(DoublePointNode & pNode) {
       }
     }
     if(!foundPlace) {
-      cout << "Entered not found place\n";
       addToBack(pNode);
-      cout << "Exited not found place \n";
     }
       
   }
