@@ -22,4 +22,4 @@ DoublePointNode.o: Point.h DoublePointNode.h \
 	g++ -c DoublePointNode.cpp
 
 clean:
-	rm $(objects) *~ convexHull
+	rm $(objects) *~ convexHull text.txt

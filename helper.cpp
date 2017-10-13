@@ -21,11 +21,11 @@ void readPoints(ifstream & stream, DoublePointList & pList) {
 
     Point newPair(firstInt, secondInt);
     //ASSERT: a new Point object was created.
-
+    
     DoublePointNode newNode(newPair);
     //ASSERT: newNode.data = newPair;
     //        newNode.next = newNode.previous = NULL
-    
+    cout << "NewNode" << newNode << endl;
     pList.insertNode(newNode);
     //ASSERT: newNode was inserted into pList as a
     //DoublePointNode object according to increasing order
@@ -33,6 +33,8 @@ void readPoints(ifstream & stream, DoublePointList & pList) {
     //increasing order of y coordinate.
     //No repititions occured.
   }
+  stream.close();
+  
 }
 
 

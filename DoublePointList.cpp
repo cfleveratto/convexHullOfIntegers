@@ -23,52 +23,52 @@ void DoublePointList::insertNode(DoublePointNode & pNode) {
     //ASSERT: Linked List is
     addToFront(pNode);
   }
-  else {
-    DoublePointNode * currentNode; //this will point to the
-                                    //current Node being
-				    //checked.
-    DoublePointNode * previousNode; //this will hold a pointer
-				    //to the previous Node
-				    //checked.
-    currentNode = firstNode; //sets checkNode to head of
-				   //
-    bool foundPlace = false;
-    while ((currentNode != NULL) && !foundPlace) {
-      //ASSERT: the end of the linked list was not reached.
-      if (currentNode->getData() < pNode.getData()) {
-	//ASSERT:pNode is greater than the current Nodes data.
-	previousNode = currentNode;
-	currentNode = currentNode->getNextPointer();
-      }
-      else if (currentNode->getData() != pNode.getData()) {
-	foundPlace = true;
-	numElements += 1;
-	if (currentNode->getPreviousPointer() != NULL) {
-	  //ASSERT: it is not the root
-	  pNode.setNextPointer(currentNode);
-	  pNode.setPrevPointer(currentNode->getPreviousPointer());
-	  DoublePointNode * newNode = new DoublePointNode(pNode);
-	  previousNode->setNextPointer(newNode);
-	}
-	else {
-	  //ASSERT: It is the root
-	  addToFront(pNode);
-	  // pNode.setNextPointer(currentNode);
-	  // DoublePointNode * newNode = new DoublePointNode(pNode);
-	  // currentNode.setPrevPointer(newNode);
-	}
-      }
-      else {
-	cout << "This is a repeated coordinate. "
-	     << "Skipping this pair.\n";
-      }
-    }
-    if(!foundPlace) {
-      addToBack(pNode);
-    }
+  // else {
+//     DoublePointNode * currentNode; //this will point to the
+//                                     //current Node being
+// 				    //checked.
+//     DoublePointNode * previousNode; //this will hold a pointer
+// 				    //to the previous Node
+// 				    //checked.
+//     currentNode = firstNode; //sets checkNode to head of
+// 				   //
+//     bool foundPlace = false;
+//     while ((currentNode != NULL) && !foundPlace) {
+//       //ASSERT: the end of the linked list was not reached.
+//       if (currentNode->getData() < pNode.getData()) {
+// 	//ASSERT:pNode is greater than the current Nodes data.
+// 	previousNode = currentNode;
+// 	currentNode = currentNode->getNextPointer();
+//       }
+//       else if (currentNode->getData() != pNode.getData()) {
+// 	foundPlace = true;
+// 	numElements += 1;
+// 	if (currentNode->getPreviousPointer() != NULL) {
+// 	  //ASSERT: it is not the root
+// 	  pNode.setNextPointer(currentNode);
+// 	  pNode.setPrevPointer(currentNode->getPreviousPointer());
+// 	  DoublePointNode * newNode = new DoublePointNode(pNode);
+// 	  previousNode->setNextPointer(newNode);
+// 	}
+// 	else {
+// 	  //ASSERT: It is the root
+// 	  addToFront(pNode);
+// 	  // pNode.setNextPointer(currentNode);
+// 	  // DoublePointNode * newNode = new DoublePointNode(pNode);
+// 	  // currentNode.setPrevPointer(newNode);
+// 	}
+//       }
+//       else {
+// 	cout << "This is a repeated coordinate. "
+// 	     << "Skipping this pair.\n";
+//       }
+//     }
+//     if(!foundPlace) {
+//       addToBack(pNode);
+//     }
       
-  }
-  cout << *this << endl;
+//   }
+//   cout << *this << endl;
 }
 
 //PRE: pPointList = P, which is a defined DoublePointList
@@ -113,10 +113,15 @@ DoublePointList::~DoublePointList () {
 //      to the DoublePointNode object containing p. lastNode
 //      points to the DoublePointNode object containing en.
 void DoublePointList::addToFront (DoublePointNode & pElement) {
-  pElement.setNextPointer(firstNode);
-  DoublePointNode * newNode = new DoublePointNode(pElement);
-  firstNode->setPrevPointer(newNode);
-  firstNode = newNode;
+  if (firstNode = NULL) {
+    pElement.setNextPointer(firstNode);
+    DoublePointNode * newNode = new DoublePointNode(pElement);
+    firstNode->setPrevPointer(newNode);
+  }
+  else {
+    DoublePointNode * newNode = new DoublePointNode(pElement);
+    firstNode = newNode;
+  }
   numElements += 1;
 }
   
@@ -157,7 +162,7 @@ ostream & operator << (ostream & stream,
   int nodeNum = 1; //this will hold the currentNum;
   while (currentNode != NULL) {
     stream << 'P' << nodeNum << " = "
-	   << currentNode;
+	   << *currentNode;
     currentNode = currentNode->getNextPointer();
     nodeNum++;
   }
