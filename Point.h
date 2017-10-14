@@ -2,6 +2,7 @@
 #define included_PointClass
 
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 class Point {
@@ -54,7 +55,7 @@ class Point {
   //      stream is a defined writeable stream.
   // POST: stream contains (x, y).
   //       RV is the changed stream.
-  friend ostream & operator << (ostream & stream,
+  friend ofstream & operator << (ofstream & stream,
 				const Point & pPoint);
 };
 

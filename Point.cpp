@@ -59,7 +59,7 @@ bool Point::operator != (const Point & pPoint) {
 //      stream is a defined writeable stream.
 // POST: stream contains (x, y).
 //       RV is the changed stream.
-ostream & operator << (ostream & stream,
+ofstream & operator << (ofstream & stream,
 		       const Point & pPoint) {
   stream << '(' << pPoint.x_coor << ", "
 	 << pPoint.y_coor << ')' << endl;

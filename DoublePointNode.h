@@ -3,6 +3,7 @@
 #include "Point.h"
 
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 class DoublePointNode {
@@ -109,7 +110,7 @@ class DoublePointNode {
   //POST: stream contains A and the data of the DoublePointNode
   //       contained at next where next != NULL.
   //       RV is the changed stream.
-  friend ostream & operator << (ostream & stream,
+  friend ofstream & operator << (ofstream & stream,
 				const DoublePointNode & pNode);
 
 };

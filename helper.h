@@ -23,8 +23,9 @@ using namespace std;
 void readPoints(ifstream & stream, DoublePointList & pList);
 
 
-//PRE:
-//POST:
+//PRE: Takes a defined DoublePointList object that does not
+//have NULL pointers. 
+//POST: returns the convex of all the sets of points.
 DoublePointList getConvexHull(DoublePointList & aList);
 
 #endif

@@ -62,16 +62,16 @@ void DoublePointList::insertNode(DoublePointNode & pNode) {
       }
       else {
 	foundPlace = true;
-	cout << "This is a repeated coordinate. "
-	     << "Skipping this pair.\n";
+	// cout << "This is a repeated coordinate. "
+	//      << "Skipping this pair.\n";
       }
     }
     if(!foundPlace) {
+      //ASSERT: pNode is great than all the Nodes currently in Linked List
       addToBack(pNode);
     }
       
   }
-  cout << *this << endl;
 }
 
 //PRE: pPointList = P, which is a defined DoublePointList
@@ -97,7 +97,6 @@ DoublePointList::DoublePointList (const DoublePointList & pPointList) {
 //POST: The DoublePointNode objects that firstNode and
 //lastNode pointed to were deleted from the heap.
 DoublePointList::~DoublePointList () {
-  cout << "Entered deconstructor for List\n";
   if (firstNode != NULL) {
     delete firstNode;
   }
@@ -154,6 +153,25 @@ void DoublePointList::addToBack (DoublePointNode pElement) {
   numElements += 1;
 }
 
+//PRE: pList = P, which is a defined DoublePointList object
+//      whose CI is satisfied.
+//      P.numElements = n, where n is some arbritrary
+//      integer.
+//POST: This object is a deep copy of P making it defined
+//      with a satisfied CI.
+//      numElements = n, and the elements in the list are
+//      copies of the elements in P such that
+//      e1, e2, ..., en.
+//      firstNode points to the DoublePointNode object
+//      containing e1. lastNode points to the
+//      DoublePointNode object containing en.
+DoublePointList & DoublePointList::operator = (const DoublePointList & pList){
+  *firstNode = *(pList.firstNode);
+  *firstNode = *(pList.lastNode);
+  numElements = pList.numElements;
+  return(*this);
+}
+
 //Overloaded << operator for outnput stream
 //PRE: pList is a defined DoublePointList whose CI is
 //      satisfied.
@@ -163,7 +181,7 @@ void DoublePointList::addToBack (DoublePointNode pElement) {
 //       objects' data at firstNode through lastNode are
 //       added to the stream.
 //       RV is the changed stream.
-ostream & operator << (ostream & stream,
+ofstream & operator << (ofstream & stream,
 		       const DoublePointList & pList) {
   DoublePointNode * currentNode = pList.firstNode;
   //this will hold pointer of
@@ -171,13 +189,11 @@ ostream & operator << (ostream & stream,
   //through linked list.
   int nodeNum = 1; //this will hold the currentNum;
   while (currentNode != NULL) {
-    stream << 'P' << nodeNum << " = "
-	   << *currentNode;
+    stream << 'P' << nodeNum << " = ";
+    stream << *currentNode;
     currentNode = currentNode->getNextPointer();
     nodeNum++;
   }
   stream << endl;
-  stream << "FirstNode memoery location" <<pList.firstNode << endl;
-  stream << "lastNode memory location " << pList.lastNode << endl;
   return (stream);
 }

@@ -25,12 +25,9 @@ DoublePointNode::DoublePointNode (Point pElement) {
 //      to the DoublePointList object P originally pointed
 //      to, if any; otherwise, NULL.
 DoublePointNode::DoublePointNode (const DoublePointNode & pNode) {
-  cout << "Entered Copy Constructor\n";
   data = pNode.data;
   next = pNode.next;
   previous = pNode.previous;
-  cout << "After assignment" << *this;
-  cout << "Exited Copy COnstrutore\n";
 }
 
 //PRE: This object is defined and has a satisfied CI.
@@ -74,7 +71,6 @@ void DoublePointNode::setPrevPointer(DoublePointNode * prevNode) {
 //      to the DoublePointList object P originally pointed
 //      to, if any; otherwise, NULL. 
 DoublePointNode & DoublePointNode::operator = (const DoublePointNode & pNode) {
-  cout << "Entered Assignment operator for NOde" << endl;
   data = pNode.data;
   if (pNode.next != NULL) {
     *next = *(pNode.next);
@@ -92,7 +88,7 @@ DoublePointNode & DoublePointNode::operator = (const DoublePointNode & pNode) {
 //POST: stream contains A and the data of the DoublePointNode
 //       contained at next where next != NULL.
 //       RV is the changed stream.
-ostream & operator << (ostream & stream,
+ofstream & operator << (ofstream & stream,
 		       const DoublePointNode & pNode) {
   stream << pNode.data;
   stream << pNode.next << endl;

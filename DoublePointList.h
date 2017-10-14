@@ -2,6 +2,7 @@
 #define included_doubPointList
 #include "DoublePointNode.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -39,7 +40,7 @@ class DoublePointList {
   //PRE: newNode = P, which is a defined DoublePointNode
   //     object with a satisfied CI.
   //POST: This object is defined and has a satisfied CI.
-  //      firstNode and lastNode points to the address
+  //      firstNode points to P and and lastNode points to the address
   //      location of P. numElements = 1.
   DoublePointList (DoublePointNode newNode);
 
@@ -194,7 +195,7 @@ class DoublePointList {
   //       objects' data at firstNode through lastNode are
   //       added to the stream.
   //       RV is the changed stream.
-  friend ostream & operator << (ostream & stream,
+  friend ofstream & operator << (ofstream & stream,
 				const DoublePointList & pList);
 
 };

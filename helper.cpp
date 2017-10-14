@@ -14,28 +14,43 @@
 //     pList.numElements = n.
 void readPoints(ifstream & stream, DoublePointList & pList) {
   while(!stream.eof()) {
-    int firstInt, secondInt; //these will hold the integers
-			     //read on each line.
-    stream >> firstInt >> secondInt;
-    //ASSERT: two intgers were read in from stream.
+    if (!stream.eof()) {
+      int firstInt, secondInt; //these will hold the integers
+      //read on each line.
+      stream >> firstInt >> secondInt;
+      //ASSERT: two intgers were read in from stream.
 
-    Point newPair(firstInt, secondInt);
-    //ASSERT: a new Point object was created.
+      Point newPair(firstInt, secondInt);
+      //ASSERT: a new Point object was created.
     
-    DoublePointNode newNode(newPair);
-    //ASSERT: newNode.data = newPair;
-    //        newNode.next = newNode.previous = NULL
-    pList.insertNode(newNode);
-    //ASSERT: newNode was inserted into pList as a
-    //DoublePointNode object according to increasing order
-    //of x coordinate  with ties settled by 
-    //increasing order of y coordinate.
-    //No repititions occured.
+      DoublePointNode newNode(newPair);
+      //ASSERT: newNode.data = newPair;
+      //        newNode.next = newNode.previous = NULL
+      pList.insertNode(newNode);
+      //ASSERT: newNode was inserted into pList as a
+      //DoublePointNode object according to increasing order
+      //of x coordinate  with ties settled by 
+      //increasing order of y coordinate.
+      //No repititions occured.
+    }
   }
   stream.close();
   
 }
 
+
+//PRE: Takes a defined DoublePointList object that does not
+//have NULL pointers. 
+//POST: returns the convex of all the sets of points.
+DoublePointList getConvexHull(const DoublePointList & aList) {
+  // DoublePointList rightHull = quickHullAlgo(aList,
+  // 					    aList.firstNode, aList.lastNode);
+  // DoublePointList leftHull = quickHullAlgo(aList,
+  // 					   aList.lastNode, aList.firstNode);
+  // DoublePointList completeHull = rightHull + leftHull;
+  // return (completeHull);
+  
+}
 
       
     

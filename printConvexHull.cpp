@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
       readPoints(inFile, pointsList);
       //ASSERT: integers were read in from inFile and made
       //into Point objects that are stored in pointsList.
-      cout << "Current Linked List:\n" << pointsList;
+      outFile << pointsList;
       //DoublePointList convexHull = getConvexHull(pointsList);
       //ASSERT: convexHull holds the points in clockwise
       //direction that make up the convex hull with no
